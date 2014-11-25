@@ -1,22 +1,41 @@
-#login-form{
-	background-color: rgba(255, 255, 255, 0.6);
-	width:310px;
-	height:200px;
+#login-form, #register-form{
+	background-color: rgba(255, 255, 255, 0.8);
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
 	border-radius: 5px;
 }
 
-#login_form_username, #login_form_password{
+#register-form{
+	width:310px;
+	height:370px;
+}
+
+#login-form{
+	width:310px;
+	height:250px;
+}
+
+.login_form_title, .register_form_title{
+	margin-left: 60px;
+	font-size:20px;
+}
+
+.form_input{
 	padding: 7px;
 	margin-left: 60px;
 	margin-top: 20px;
 	background:#EBE2E2;
 	border: 1px solid #E1D0D0;
+	color:#4E3541!important;
 }
 
-#login_form_button{
+.form_input:focus{
+	background: #DDE1DD;
+	border: 1px solid #BFADAD;
+}
+
+.form_button{
 	padding:7px;
 	border-radius: 4px;
 	border: 1px solid #E1D0D0;

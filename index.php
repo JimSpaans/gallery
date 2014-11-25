@@ -1,3 +1,61 @@
+<?php
+session_start();
+echo $_SESSION['session_user'];
+include 'php/classes/classes.php';
+
+
+
+if(isset($_POST['login_button'])){
+	$user = new User();
+
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	$errors = array();
+
+	if(strlen($username) == ""){
+		array_push($errors, "Please fill in your username.");
+	}
+
+	if(strlen($password) == ""){
+		array_push($errors, "Please fill in your password.");
+	}
+
+	if(strlen($username) < 5){
+		array_push($errors, "Your username has to be at least 5 characters long.");
+	}
+
+	if(strlen($password) < 6){
+		array_push($errors, "Your password has to be at least 6 characters long.");
+	}
+
+	if(count($errors) == 0){
+		$login = $user->Login($username, $password);
+		if($user->Login($username, $password)!= false){
+			$_SESSION['session_user'] = $username;
+			header("Location: admin_panel.php");
+		}else{
+			echo "Ja nee";
+		}
+	}else{
+		print_r($errors);
+	}
+
+
+
+	/*
+	echo '<pre>';
+	print_r($login);
+	echo '</pre>';	
+
+	if($login = false){
+		
+	}else{
+		
+	}*/
+}
+
+?>
 <html>
 	<head>
 		<title>Gallery</title>
@@ -20,11 +78,15 @@
 				</div>
 			</div><br/><br/><br/><br/>
 			<!--<div id="content-div"><div id="content">-->
-			<div id="login-form">
+			
+			<div id="login-form"><br/>
+			<div class="login_form_title">
+				Login
+			</div>
 				<form action="" method="post">
-					<input type="text" name="username" id="login_form_username" placeholder="Username"/><br/>
-					<input type="password" name="password" id="login_form_username" placeholder="*******"/><br/>
-					<input type="submit" name="login_button" id="login_form_button" value="Login"/>
+					<input type="text" name="username" class="form_input" id="login_form_username" placeholder="Username"/><br/>
+					<input type="password" name="password" class="form_input" id="login_form_username" placeholder="*******"/><br/>
+					<input type="submit" name="login_button" class="form_button" id="login_form_button" value="Send"/>
 				</form>	
 			</div>
 			<!--</div></div>-->
